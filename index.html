@@ -260,6 +260,886 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/17/gcc%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84-md/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="应真">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seeknowledge">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/17/gcc%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84-md/" itemprop="url">gcc学习路径.md</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-17T22:40:08+08:00">
+                2020-05-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/05/17/gcc%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84-md/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/05/17/gcc%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84-md/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/05/17/gcc%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84-md/" class="leancloud_visitors" data-flag-title="gcc学习路径.md">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.5k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="一、gcc与g-区别"><a href="#一、gcc与g-区别" class="headerlink" title="一、gcc与g++区别"></a>一、gcc与g++区别</h3><p>gcc集成了各种不同语言的编译器，代表GNU Compiler Collection，g++是gcc的c++编译器。编译代码是根据代码的后缀名来判断调用编辑器。例如后缀是.c，会调用c编译器还有linker去链接c的库；如果后缀是.cpp，会调用g++编译器，调用的库也是c++版本的。</p>
+<p>二、gcc编译</p>
+<h4 id="1、一次性编译"><a href="#1、一次性编译" class="headerlink" title="1、一次性编译"></a>1、一次性编译</h4><p>直接使用gcc加文件名编译，如果想自定义输出文件名再加-o参数</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gcc main.c # 输出默认为 a.out 可执行文件</span><br><span class="line">gcc main.c -o main # 输出名为main的可执行文件</span><br><span class="line">gcc main.c -o octavian/main # 输出为octavian文件夹下的main文件</span><br></pre></td></tr></table></figure>
+
+<h4 id="2、分步编译"><a href="#2、分步编译" class="headerlink" title="2、分步编译"></a>2、分步编译</h4><ul>
+<li>编译（compile）：将源文件编译成目标文件需要用 -c 选项，想自定义输出目标文件名需要 -o 选项</li>
+<li>链接 （link）：gcc后面紧跟目标文件的名字，就可以将目标文件链接成可执行文件，想自定义可执行文件的名字需要 -o 选项</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gcc -c main.c -o main.o</span><br><span class="line">gcc main.o -o main</span><br></pre></td></tr></table></figure>
+
+<h4 id="3、整个编译流程"><a href="#3、整个编译流程" class="headerlink" title="3、整个编译流程"></a>3、整个编译流程</h4><p>gcc 编译器在编译一个c语言程序时经历一下4步</p>
+<ul>
+<li>将c语言程序<strong>预处理</strong>，生成 .i 文件</li>
+<li>预处理后的 .i 文件<strong>编译</strong>成汇编文件 .s 文件</li>
+<li>将汇编语言文件经过<strong>汇编</strong>，生成 .o 文件</li>
+<li>将各个模块的 .o 文件链接起来生成一个可执行程序文件</li>
+</ul>
+<p>gcc 编译选项</p>
+<ul>
+<li>-c : 编译 + 汇编，生成的是 .o 文件</li>
+<li>-S：编译，生成的是 .s 文件</li>
+<li>-E：预处理，生成的 .i 文件</li>
+<li>-I ：指定包含的头文件目录（大写i）</li>
+<li>-L：手动添加链接库路径（大写L）</li>
+<li>-l：添加链接库名字（小写L）</li>
+<li>-g：生成能被gdb调试器所用的调试信息</li>
+<li>-save-temps：将整个编译过程生成的中间文件都存下来</li>
+</ul>
+<p>gcc -l：手动添加链接库</p>
+<ul>
+<li>链接器把多个目标文件链接成一个单独的可执行文件。在链接过程中，它需要把符号（全局变量，函数）用对应的数据内存地址（变量地址、函数地址）替代，以完成程序中多个模块的外部引用。</li>
+<li>对链接器而言，链接库不过是一个具有许多目标文件的集合，放在一个文件中方便处理，比如C标准库函数</li>
+<li>标准库的大部分函数通常放在文件 lib.a(.a代表archive，获取的意思)或者放在用于共享的动态链接文件 lib.so(shared object，共享对象的意思)。这些链接库一般位于 /lib 或者 /usr/lib，或者gcc默认搜索的其他目录</li>
+<li>链接程序时，gcc默认链接 lib.a 和 lib.so，其他的库就需要手动添加</li>
+</ul>
+<p>链接其他目录中的库</p>
+<ul>
+<li><p>链接库作为一般目标文件，为gcc指定链接库的完整路径与文件名</p>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gcc main.c -o main /usr/lib/libm.a</span><br><span class="line">gcc main.c -o main -lm # libm.a简写为m，跟在-l后面</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 -L选项，为gcc增加另一个搜索链接库的目录，可使用多个 -L，也可在路径内使用冒号分割列表</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc mian.c -o mian -L &#x2F;usr&#x2F;lib -l m</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>把链接库目录加到环境变量 LIBRARY_PATH 中</p>
+</li>
+</ul>
+<h3 id="三、动态库与静态库"><a href="#三、动态库与静态库" class="headerlink" title="三、动态库与静态库"></a>三、动态库与静态库</h3><p>静态库在链接期间被组合到程序中，动态库在程序运行阶段被加载进内存</p>
+<h4 id="1、静态库生成"><a href="#1、静态库生成" class="headerlink" title="1、静态库生成"></a>1、静态库生成</h4><p>linux下静态库的命名规则为 libxxx.a，xxx表示的是库的名字。gcc生成静态库的链接分两步</p>
+<ul>
+<li>gcc把源文件编译为目标文件</li>
+<li>ar命令将.o文件打包成静态库链接</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gcc -c *.c</span><br><span class="line"><span class="meta">#</span><span class="bash"> r表示替换库中的文件，c表示创建一个库，s创建目标文件索引（较大的库时能提高速度）</span></span><br><span class="line">ar rcs libtest.a *.O</span><br></pre></td></tr></table></figure>
+
+<h4 id="2、静态库使用"><a href="#2、静态库使用" class="headerlink" title="2、静态库使用"></a>2、静态库使用</h4><p>使用静态链接库时，除了需要库文件本身，还需要头文件；库文件包含了函数定义的代码（编译后），头文件则包含了函数声明的代码。为了使用静态库，我们创建一个文件夹math，作为新项目的基础目录。</p>
+<p>规范的项目目录如下：lib文件夹一般存放库文件，include文件夹一般存放头文件，src文件夹一般存放源文件，bin文件夹一般存放可执行文件。为了规范，将上文的 libtest.a 放在lib下，test.h 放在include下，在src下创建一个main.c文件</p>
+<p>编译main.c时，我们需要使用-I（大写的i）选项指明头文件的包含路径，使用-L选项指明静态库的包含路径，使用-l（小写的L）选项指明静态库的名字</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc src/main.c -I include/ -L lib/ -l test -o main</span><br></pre></td></tr></table></figure>
+
+<h4 id="3、动态库生成与使用"><a href="#3、动态库生成与使用" class="headerlink" title="3、动态库生成与使用"></a>3、动态库生成与使用</h4><p>gcc生成动态库的参数有两个：-shared选项，输入文件可以是源文件、汇编文件和目标文件；-fPIC选项，作用于编译阶段，告诉编译器产生位置无关代码，产生的代码没有绝对地址只有相对地址，就可以被加载器加载到内存中任意位置。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 从源文件生成动态库</span></span><br><span class="line">gcc -fPIC -shared func.c -o libfunc.so</span><br><span class="line"><span class="meta">#</span><span class="bash"> 从目标文件生成动态库</span></span><br><span class="line">gcc -fPIC -c func.c -o func.o # -fPIC作用于编译阶段，生成位置无关代码</span><br><span class="line">gcc -shared func.o -o libfunc.so</span><br></pre></td></tr></table></figure>
+
+<p>gcc按照如下形式将一个动态库链接到可执行文件：在命令行中列出动态库的名称</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc main.c libfunc.so -o main</span><br></pre></td></tr></table></figure>
+
+<p>必须要确保程序运行时可以找到动态库，可以将动态库放到标准目录下，例如/usr/lib；或者设置一个合适的环境变量，例如LIBRARY_PATH。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/01/%E7%BC%96%E8%AF%91%E5%99%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B-md/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="应真">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seeknowledge">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/01/%E7%BC%96%E8%AF%91%E5%99%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B-md/" itemprop="url">编译器的工作过程.md</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-01T22:47:38+08:00">
+                2020-04-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/01/%E7%BC%96%E8%AF%91%E5%99%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B-md/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/01/%E7%BC%96%E8%AF%91%E5%99%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B-md/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/04/01/%E7%BC%96%E8%AF%91%E5%99%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B-md/" class="leancloud_visitors" data-flag-title="编译器的工作过程.md">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.7k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>源码要运行，必须先转成二进制码，这是编译器的任务。复杂的项目，编译过程还需分成三步。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<h3 id="一、配置（configure）"><a href="#一、配置（configure）" class="headerlink" title="一、配置（configure）"></a>一、配置（configure）</h3><p>编译器在工作之前，需要知道当前的系统环境，比如标准库在哪里、软件的安装位置在哪里、需要安装哪些组件等等。这是因为不同计算机的系统环境不一样，通过指定编译参数，编译器就可以灵活适应环境，编译出各种环境都能运行的机器码。这个确定编译参数的步骤，就叫做”配置”（configure）。</p>
+<p>这些配置信息保存在一个配置文件之中，约定俗成是一个叫做configure的脚本文件。通常它是由autoconf工具生成的。编译器通过运行这个脚本，获知编译参数。</p>
+<h3 id="二、确定标准库和头文件的位置"><a href="#二、确定标准库和头文件的位置" class="headerlink" title="二、确定标准库和头文件的位置"></a>二、确定标准库和头文件的位置</h3><p>源码肯定会用到标准库函数（standard library）和头文件（header）。它们可以存放在系统的任意目录中，编译器实际上没办法自动检测它们的位置，只有通过配置文件才能知道。</p>
+<p>编译的第二步，就是从配置文件中知道标准库和头文件的位置。一般来说，配置文件会给出一个清单，列出几个具体的目录。等到编译时，编译器就按顺序到这几个目录中，寻找目标。</p>
+<h3 id="三、确定依赖关系"><a href="#三、确定依赖关系" class="headerlink" title="三、确定依赖关系"></a>三、确定依赖关系</h3><p>对于大型项目来说，源码文件之间往往存在依赖关系，编译器需要确定编译的先后顺序。假定A文件依赖于B文件，编译器应该保证做到下面两点。</p>
+<ul>
+<li>只有在B文件编译完成后，才开始编译A文件</li>
+<li>当B文件发生变化时，A文件会被重新编译</li>
+</ul>
+<p>编译顺序保存在一个叫做makefile的文件中，里面列出哪个文件先编译，哪个文件后编译。而makefile文件由configure脚本运行生成，这就是为什么编译时configure必须首先运行的原因。</p>
+<h3 id="四、头文件的预编译"><a href="#四、头文件的预编译" class="headerlink" title="四、头文件的预编译"></a>四、头文件的预编译</h3><p>不同的源码文件，可能引用同一个头文件（比如stdio.h）。编译的时候，头文件也必须一起编译。为了节省时间，编译器会在编译源码之前，先编译头文件。这保证了头文件只需编译一次，不必每次用到的时候，都重新编译了。</p>
+<p>不过，并不是头文件的所有内容，都会被预编译。用来声明宏的#define命令，就不会被预编译</p>
+<h3 id="五、预处理"><a href="#五、预处理" class="headerlink" title="五、预处理"></a>五、预处理</h3><p>预编译完成后，编译器就开始替换掉源码中bash的头文件和宏。编译器在这一步还会移除注释。</p>
+<h3 id="六、编译"><a href="#六、编译" class="headerlink" title="六、编译"></a>六、编译</h3><p>把源码转为汇编码，转换后的汇编码文件称为目标文件（object file）</p>
+<h3 id="七、链接"><a href="#七、链接" class="headerlink" title="七、链接"></a>七、链接</h3><p>目标文件还不能运行，必须进一步转成可执行文件。编译器的下一步工作，就是把外部函数代码（后缀通常为.lib和.a文件）添加到可执行文件中，叫链接（linking）。</p>
+<p>make命令的作用，就是从头文件预编译开始到做完这一步。</p>
+<h3 id="八、安装"><a href="#八、安装" class="headerlink" title="八、安装"></a>八、安装</h3><p>上一步的连接是在内存中进行的，即编译器在内存中生成了可执行文件。下一步，必须将可执行文件保存到用户事先指定的安装目录。</p>
+<p>表面上，这一步很简单，就是将可执行文件（连带相关的数据文件）拷贝过去就行了。但是实际上，这一步还必须完成创建目录、保存文件、设置权限等步骤。这整个的保存过程就称为”安装”（Installation）。</p>
+<h3 id="九、操作系统连接"><a href="#九、操作系统连接" class="headerlink" title="九、操作系统连接"></a>九、操作系统连接</h3><p>可执行文件安装后，必须以某种方式通知操作系统，让其知道可以使用这个程序了。比如，我们安装了一个文本阅读程序，往往希望双击txt文件，该程序就会自动运行。</p>
+<p>这就要求在操作系统中，登记这个程序的元数据：文件名、文件描述、关联后缀名等等。Linux系统中，这些信息通常保存在/usr/share/applications目录下的.desktop文件中。另外，在Windows操作系统中，还需要在Start启动菜单中，建立一个快捷方式。</p>
+<p>这些事情就叫做”操作系统连接”。make install命令，就用来完成”安装”和”操作系统连接”这两步。</p>
+<h3 id="十、生成安装包"><a href="#十、生成安装包" class="headerlink" title="十、生成安装包"></a>十、生成安装包</h3><p>写到这里，源码编译的整个过程就基本完成了。但是只有很少一部分用户，愿意耐着性子，从头到尾做一遍这个过程。事实上，如果你只有源码可以交给用户，他们会认定你是一个不友好的家伙。大部分用户要的是一个二进制的可执行程序，立刻就能运行。这就要求开发者，将上一步生成的可执行文件，做成可以分发的安装包。</p>
+<p>所以，编译器还必须有生成安装包的功能。通常是将可执行文件（连带相关的数据文件），以某种目录结构，保存成压缩文件包，交给用户。</p>
+<h3 id="十一、动态链接"><a href="#十一、动态链接" class="headerlink" title="十一、动态链接"></a>十一、动态链接</h3><p>正常情况下，到这一步，程序已经可以运行了。至于运行期间（runtime）发生的事情，与编译器一概无关。但是，开发者可以在编译阶段选择可执行文件连接外部函数库的方式，到底是静态连接（编译时连接），还是动态连接（运行时连接）。所以，最后还要提一下，什么叫做动态连接。</p>
+<p>前面已经说过，静态连接就是把外部函数库，拷贝到可执行文件中。这样做的好处是，适用范围比较广，不用担心用户机器缺少某个库文件；缺点是安装包会比较大，而且多个应用程序之间，无法共享库文件。动态连接的做法正好相反，外部函数库不进入安装包，只在运行时动态引用。好处是安装包会比较小，多个应用程序可以共享库文件；缺点是用户必须事先安装好库文件，而且版本和安装位置都必须符合要求，否则就不能正常运行。</p>
+<p>现实中，大部分软件采用动态连接，共享库文件。这种动态共享的库文件，Linux平台是后缀名为.so的文件，Windows平台是.dll文件，Mac平台是.dylib文件。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/12/%E4%BA%AE%E5%BA%A6%E8%92%99%E7%89%88-md/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="应真">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seeknowledge">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/12/%E4%BA%AE%E5%BA%A6%E8%92%99%E7%89%88-md/" itemprop="url">亮度蒙版.md</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-12T08:34:10+08:00">
+                2020-02-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%91%84%E5%BD%B1%E5%90%8E%E6%9C%9F/" itemprop="url" rel="index">
+                    <span itemprop="name">摄影后期</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/02/12/%E4%BA%AE%E5%BA%A6%E8%92%99%E7%89%88-md/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/02/12/%E4%BA%AE%E5%BA%A6%E8%92%99%E7%89%88-md/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/02/12/%E4%BA%AE%E5%BA%A6%E8%92%99%E7%89%88-md/" class="leancloud_visitors" data-flag-title="亮度蒙版.md">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  72 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <center><font size=5>基本原理</font></center>
+亮度蒙版，就是根据画面亮度来生成更加精确的蒙版。根据通道来生成一个简单的亮度蒙版
+
+<ul>
+<li>按住 ctrl 键，然后点击通道里面的 RGB 图像，会生成一个选区</li>
+<li>转化为通道存储</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/10/%E9%80%89%E5%8C%BA%E9%80%9A%E9%81%93%E8%92%99%E7%89%88%E8%BD%AC%E6%8D%A2-md/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="应真">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seeknowledge">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/10/%E9%80%89%E5%8C%BA%E9%80%9A%E9%81%93%E8%92%99%E7%89%88%E8%BD%AC%E6%8D%A2-md/" itemprop="url">选区通道蒙版转换.md</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-10T23:26:09+08:00">
+                2020-02-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%91%84%E5%BD%B1%E5%90%8E%E6%9C%9F/" itemprop="url" rel="index">
+                    <span itemprop="name">摄影后期</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/02/10/%E9%80%89%E5%8C%BA%E9%80%9A%E9%81%93%E8%92%99%E7%89%88%E8%BD%AC%E6%8D%A2-md/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/02/10/%E9%80%89%E5%8C%BA%E9%80%9A%E9%81%93%E8%92%99%E7%89%88%E8%BD%AC%E6%8D%A2-md/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/02/10/%E9%80%89%E5%8C%BA%E9%80%9A%E9%81%93%E8%92%99%E7%89%88%E8%BD%AC%E6%8D%A2-md/" class="leancloud_visitors" data-flag-title="选区通道蒙版转换.md">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  409 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>看完 Thomas 大神的视频<a href="https://www.bilibili.com/video/av50626675/?spm_id_from=333.788.videocard.8" target="_blank" rel="noopener">Photoshop选区、通道、蒙版关系与用法全解析</a>，觉得还是图文的形式比视频更好理解和记忆。开局一张图，箭头表示二者之间可以实现转换。</p>
+<center><font size=5>选区与通道</font></center>
+
+<p>选区存储为通道</p>
+<ul>
+<li>右侧通道面板右下方四个按键里第二个：将选区存储为通道</li>
+<li>快捷键：Alt +  S + V （存储选区）</li>
+</ul>
+<p>通道转化为选区：蚂蚁线显示的是不透明度50%以上的选区（白色全选，黑色全不选）</p>
+<ul>
+<li>按住 Ctrl，点击该通道</li>
+<li>快捷键：Alt + S + O  （载入选区）</li>
+<li>右侧通道面板下方四个按键里第一个：将通道作为选区载入</li>
+</ul>
+<center><font size=5>选区与蒙版</font></center>
+
+<p>选区转化为蒙版</p>
+<ul>
+<li>右侧图层面板右下方六个按键里第二个：添加图层蒙版</li>
+<li>右侧图层面板右下方六个按键里第三个：添加调整图层，自动生成图层蒙版</li>
+</ul>
+<p>选区替换原来的蒙版</p>
+<ul>
+<li><p>选区转化为通道</p>
+</li>
+<li><p>将原来蒙版选中，点编辑-&gt;填充-&gt;黑色</p>
+</li>
+<li><p>通道转化为选区</p>
+</li>
+<li><p>将白色蒙版选中，点编辑-&gt;填充-&gt;白色</p>
+</li>
+</ul>
+<center><font size=5>通道与蒙版</font></center>
+
+<p>通道与蒙版之间不能转化，必须依赖于选区作中间桥梁</p>
+<center><font size=5>蒙版与蒙版</font></center>
+
+<p>蒙版复制</p>
+<ul>
+<li>从一个图层复制到另一个图层：按住 ALT 键，然后拖动蒙版到另一个图层</li>
+</ul>
+<p>蒙版移动</p>
+<ul>
+<li>从一个图层移动到另一个图层：直接拖动到另一个图层</li>
+</ul>
+<p>蒙版反向</p>
+<ul>
+<li>选中蒙版，按 ctrl + i</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/02/%E6%97%A0%E8%BE%93%E5%87%BA%EF%BC%8C%E4%B8%8D%E6%B6%89%E5%85%A5%E2%80%94%E2%80%942019%E5%B9%B4%E9%80%9A%E9%89%B4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -530,7 +1410,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -541,7 +1421,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -552,7 +1432,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -619,7 +1499,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">1.5k</span>
+    <span title="Site words total count">5.2k</span>
   
 </div>
 
